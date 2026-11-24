@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## About This Repository
 
-A minimal Swift library and CLI starter template. Its only application code is a placeholder Fibonacci implementation in `Sources/` — real logic is added by projects derived from it.
+A minimal SwiftUI app starter template. It's at an early stage: no SwiftUI app exists yet, and the only code is the placeholder Fibonacci library and CLI in `Sources/`, carried over from `swift-starter` until a SwiftUI app replaces them.
 
 ## Gotchas
 

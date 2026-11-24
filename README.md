@@ -1,10 +1,12 @@
-# Swift Starter
+# SwiftUI Starter
 
-A minimal template for building a [Swift](https://www.swift.org/) library with an optional CLI. Ships pre-configured with formatting, linting, 100% test coverage enforcement, pre-commit hooks, and CI.
+A minimal template for building an app with [SwiftUI](https://developer.apple.com/swiftui/). Ships pre-configured with formatting, linting, unit tests, pre-commit hooks, and CI.
+
+This template is at an early stage: the SwiftUI app is yet to come, and the code here is still the Swift library and CLI carried over from [Swift Starter](https://github.com/threeal/swift-starter).
 
 ## Getting Started
 
-Create a new repository from this template on GitHub using [this link](https://github.com/new?template_name=swift-starter&template_owner=threeal), or clone it locally and point it at your own remote.
+Create a new repository from this template on GitHub using [this link](https://github.com/new?template_name=swiftui-starter&template_owner=threeal), or clone it locally and point it at your own remote.
 
 ## Setup
 
