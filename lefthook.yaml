@@ -1,0 +1,16 @@
+pre-commit:
+  piped: true
+  fail_on_changes: always
+  fail_on_changes_diff: true
+  jobs:
+    - name: build
+      run: swift build --build-tests
+
+    - name: check lint
+      run: swift format lint --strict --recursive .
+
+    - name: fix swift formatting
+      run: swift format --in-place --recursive .
+
+    - name: fix formatting
+      run: dprint fmt

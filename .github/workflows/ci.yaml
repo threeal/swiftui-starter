@@ -1,0 +1,37 @@
+name: CI
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  build:
+    name: Build
+    runs-on: xcode-27
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+
+      - name: Install dprint
+        uses: taiki-e/install-action@v2
+        with:
+          tool: dprint
+
+      - name: Setup Lefthook
+        uses: threeal/setup-lefthook-action@v1.1.0
+
+      - name: Check pre-commit hook
+        run: lefthook run pre-commit --all-files
+
+      - name: Test
+        run: swift test --enable-code-coverage
+
+      - name: Check coverage
+        run: |
+          files=$(jq --arg root "$PWD/" '[
+            .data[].files[]
+            | {name: (.filename | ltrimstr($root)), percent: .summary.lines.percent}
+            | select(.name | test("^(\\.build|Tests|Sources/bonacci)/") | not)
+          ]' "$(swift test --show-codecov-path)")
+          jq -r '.[] | "\(.name): \(.percent)%"' <<< "$files"
+          jq -e 'length > 0 and all(.percent == 100)' <<< "$files" > /dev/null
