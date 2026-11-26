@@ -1,4 +1,7 @@
 .*
 !.github/
-!.gitattributes
 !.gitignore
+
+*.xcodeproj/
+*.xcworkspace/
+Derived/
