@@ -4,7 +4,7 @@ pre-commit:
   fail_on_changes_diff: true
   jobs:
     - name: build
-      run: swift build --build-tests
+      run: tuist test --build-only
 
     - name: check lint
       run: swift format lint --strict --recursive .

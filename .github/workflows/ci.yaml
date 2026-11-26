@@ -17,6 +17,9 @@ jobs:
         with:
           tool: dprint
 
+      - name: Install Tuist
+        run: brew install tuist
+
       - name: Setup Lefthook
         uses: threeal/setup-lefthook-action@v1.1.0
 
@@ -24,14 +27,4 @@ jobs:
         run: lefthook run pre-commit --all-files
 
       - name: Test
-        run: swift test --enable-code-coverage
-
-      - name: Check coverage
-        run: |
-          files=$(jq --arg root "$PWD/" '[
-            .data[].files[]
-            | {name: (.filename | ltrimstr($root)), percent: .summary.lines.percent}
-            | select(.name | test("^(\\.build|Tests|Sources/bonacci)/") | not)
-          ]' "$(swift test --show-codecov-path)")
-          jq -r '.[] | "\(.name): \(.percent)%"' <<< "$files"
-          jq -e 'length > 0 and all(.percent == 100)' <<< "$files" > /dev/null
+        run: tuist test
