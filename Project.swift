@@ -25,5 +25,14 @@ let project = Project(
       buildableFolders: ["Counter/Tests"],
       dependencies: [.target(name: "Counter")]
     ),
+    .target(
+      name: "CounterUITests",
+      destinations: .macOS,
+      product: .uiTests,
+      bundleId: "com.example.counter.uitests",
+      deploymentTargets: .macOS("27.0"),
+      buildableFolders: ["Counter/UITests"],
+      dependencies: [.target(name: "Counter")]
+    ),
   ]
 )
